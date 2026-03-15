@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tiny RC4</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <header>
+          <h1>Tiny RC4</h1>
+          <p>Mã hóa văn bản và ảnh RGB</p>
+        </header>
+        <!-- TEXT ENCRYPTION -->
+        <h2>Mã hóa văn bản</h2>
+        <form method="post">
+          <div class="form-group">
+            <label>Plaintext:</label>
+            <textarea name="plaintext" placeholder="Ex: bag"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Key:</label>
+            <input type="text" name="key" placeholder="Ex: 213" />
+          </div>
+
+          <button type="submit">Encrypt</button>
+        </form>
+        {% if result %}
+          {% if result %}
+            <h3>Results</h3>
+            <div class="result-text">
+              <div>Cipher: {{ result }}</div>
+              <div>Cipher Text: {{ cipher_text }}</div>
+              <div>Decrypted: {{ decrypted }}</div>
+            </div>
+          {% endif %}
+        {% endif %}
+        {% if steps %}
+          <details>
+            <summary>Xem các bước</summary>
+            <ul>
+              {% for step in steps %}
+                <li>{{ step }}</li>
+              {% endfor %}
+            </ul>
+          </details>
+        {% endif %}
+      </div>
+      <!-- IMAGE ENCRYPTION -->
+      <div class="card">
+        <h2>Mã hóa ảnh RGB</h2>
+        <form method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Khóa:</label>
+            <input type="text" name="key" />
+          </div>
+
+          <div class="form-group">
+            <label>Chế độ:</label>
+            <select name="mode">
+              <option value="encrypt">Mã hóa</option>
+              <option value="decrypt">Giải mã</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Chọn ảnh:</label>
+            <input type="file" name="image" accept="image/*" />
+          </div>
+
+          <button type="submit">Xử lý ảnh</button>
+        </form>
+
+        {% if image_result %}
+          <div class="result">
+            <h3 style="text-align: center; color: #5e7bfb;">Kết quả</h3>
+
+            <div class="image-grid">
+              <div class="image-box">
+                <h3>Ảnh gốc</h3>
+                <img src="{{ url_for('uploaded_file', filename=image_result.input) }}" alt="Input" />
+              </div>
+
+              <div class="image-box">
+                <h3>
+                  Ảnh đã{% if image_result.mode == 'encrypt' %}
+                    mã hóa
+                  {% else %}
+                    giải mã
+                  {% endif %}
+                </h3>
+                <img src="{{ url_for('output_file', filename=image_result.output) }}" alt="Output" />
+              </div>
+            </div>
+
+            <div style="text-align: center;">
+              <a href="{{ url_for('download', filename=image_result.output) }}" class="download-btn">Tải ảnh xuống</a>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if image_steps %}
+          <details>
+            <summary>Xem các bước (100 bước đầu)</summary>
+            <ul>
+              {% for step in image_steps %}
+                <li>{{ step }}</li>
+              {% endfor %}
+            </ul>
+          </details>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
