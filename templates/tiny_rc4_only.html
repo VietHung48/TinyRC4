@@ -2,23 +2,25 @@
 <html>
   <head>
     <title>TinyRC4 Encryption</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon" />
   </head>
   <body>
     <h1>TinyRC4 Encryption</h1>
     <h2>Text Encryption</h2>
     <form method="post">
-      Plaintext:<input type="text" name="plaintext" placeholder="Ex: bag"/>
-      Key:<input type="text" name="key" placeholder="Ex: 213"/>
+      Plaintext:<input type="text" name="plaintext" placeholder="Ex: bag" />Key:<input type="text" name="key" placeholder="Ex: 2,1,3" />
       <button type="submit">Encrypt</button>
     </form>
     {% if result %}
+      
       <h3>Results</h3>
+      {% if key %}
+        <p>Key: {{ key }}</p>
+      {% endif %}
       <p>Cipher: {{ result }}</p>
       <p>Cipher Text: {{ cipher_text }}</p>
       <p>Decrypted: {{ decrypted }}</p>
-
     {% endif %}
     <h3>Steps</h3>
     <ul>

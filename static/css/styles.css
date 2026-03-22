@@ -157,3 +157,11 @@ li:last-child{
 .result-text div{
     padding:4px 0;
 }
+input[type="text"]{
+    font-family:monospace;
+    margin-bottom: 5px;
+}
+h3{
+    margin-top: 20px;
+    color: #333;
+}

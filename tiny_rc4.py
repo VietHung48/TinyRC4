@@ -76,6 +76,7 @@ def index():
     cipher_text = None
     decrypted = None    
     steps = []
+    key = None
     if request.method == "POST":
         if "plaintext" in request.form:
             plaintext = request.form["plaintext"]
@@ -93,7 +94,7 @@ def index():
         result=result,
         cipher_text=cipher_text,
         decrypted=decrypted,
-        steps=steps
+        steps=steps, key = key
     )
 if __name__ == "__main__":
     app.run(debug=True)

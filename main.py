@@ -116,7 +116,7 @@ def index():
         
         
         image_result=image_result,
-        image_steps=image_steps
+        image_steps=image_steps, key = key
     )
 
 @app.route('/uploads/<filename>')
