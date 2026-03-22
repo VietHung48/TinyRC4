@@ -1,0 +1,4 @@
+- Chạy file main.py để mã hóa text và ảnh.
+- Nếu muốn chỉ mã hóa text thì chạy tiny_rc4.py.
+- Khi mã hóa ảnh, sẽ tạo ra 2 folder là uploads và output chứa ảnh trước khi mã hóa và ảnh sau khi mã hóa.
+- Ảnh có thể tải xuống được.
