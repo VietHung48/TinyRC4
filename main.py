@@ -61,6 +61,7 @@ def index():
     steps = []
     image_result = None
     image_steps = []
+    key = None
     if request.method == 'POST':
         #mã hóa hoặc giải mã plaintext
         if 'plaintext' in request.form and request.form['plaintext']:
